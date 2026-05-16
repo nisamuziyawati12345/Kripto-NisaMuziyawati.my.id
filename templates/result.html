@@ -1,0 +1,345 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container py-4">
+
+    <!-- HEADER -->
+    <div class="text-center mb-4">
+
+        <h1 class="fw-bold">
+            🔐 Hasil Kriptografi
+        </h1>
+
+        <p class="text-secondary">
+            Simulasi proses enkripsi & dekripsi klasik
+        </p>
+
+    </div>
+
+    <!-- MAIN CARD -->
+    <div class="card shadow-lg border-0">
+
+        <div class="card-body p-4">
+
+            <!-- TOP INFO -->
+            <div class="row g-3 mb-4">
+
+                <div class="col-md-4">
+
+                    <div class="result-box h-100">
+
+                        <small class="text-secondary">
+                            Algoritma
+                        </small>
+
+                        <h4 class="text-info fw-bold mt-2">
+                            {{ algorithm|upper }}
+                        </h4>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <div class="result-box h-100">
+
+                        <small class="text-secondary">
+                            Action
+                        </small>
+
+                        <h4 class="text-warning fw-bold mt-2">
+                            {{ action|upper }}
+                        </h4>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <div class="result-box h-100">
+
+                        <small class="text-secondary">
+                            Formula
+                        </small>
+
+                        <h5 class="mt-2">
+                            <code>{{ formula }}</code>
+                        </h5>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- INPUT -->
+            <div class="result-box mb-4">
+
+                <h5 class="fw-bold mb-3">
+                    📝 Input Text
+                </h5>
+
+                <div class="p-3 rounded bg-body-tertiary">
+
+                    {{ input_text }}
+
+                </div>
+
+            </div>
+
+            <!-- RESULT -->
+            <div class="result-box mb-4 border border-success">
+
+                <h5 class="fw-bold mb-3">
+                    ✅ Hasil
+                </h5>
+
+                <div class="text-center">
+
+                    <h2 class="text-success fw-bold">
+                        {{ result }}
+                    </h2>
+
+                </div>
+
+            </div>
+
+            <!-- HILL EXPLANATION -->
+            {% if algorithm == 'hill' %}
+
+            <div class="alert alert-info shadow-sm">
+
+                <h5 class="fw-bold">
+                    📐 Penjelasan Hill Cipher
+                </h5>
+
+                <p class="mb-2">
+                    Hill Cipher menggunakan perkalian matriks
+                    untuk melakukan enkripsi plaintext.
+                </p>
+
+                <div class="bg-white p-3 rounded">
+
+                    <code>
+                        C = K × P mod 26
+                    </code>
+
+                </div>
+
+            </div>
+
+            {% endif %}
+
+            <!-- PLAYFAIR MATRIX -->
+            {% if algorithm == 'playfair' %}
+
+                {% if steps|length > 0 and steps[0].get('matrix') %}
+
+                <div class="result-box mb-4">
+
+                    <h4 class="fw-bold mb-4">
+                        🔲 Matrix Playfair 5x5
+                    </h4>
+
+                    {% set matrix = steps[0].get('matrix') %}
+
+                    <div class="matrix-grid">
+
+                        {% for row in matrix %}
+
+                        <div class="matrix-row">
+
+                            {% for item in row %}
+
+                            <div class="matrix-cell">
+
+                                {{ item }}
+
+                            </div>
+
+                            {% endfor %}
+
+                        </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+                {% endif %}
+
+            {% endif %}
+
+            <!-- STEPS -->
+            <div class="result-box">
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+
+                    <h4 class="fw-bold mb-0">
+                        📘 Proses Perhitungan
+                    </h4>
+
+                    <span class="badge bg-primary">
+                        {{ steps|length }} Step
+                    </span>
+
+                </div>
+
+                {% if steps %}
+
+                <div class="table-responsive">
+
+                    <table class="table table-hover table-bordered align-middle text-center">
+
+                        <thead class="table-primary">
+
+                            <tr>
+
+                                <th>No</th>
+                                <th>Char</th>
+                                <th>Nilai</th>
+                                <th>Key</th>
+                                <th>Nilai Key</th>
+                                <th>Perhitungan</th>
+                                <th>Hasil</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            {% for step in steps %}
+
+                            <tr class="fade-row">
+
+                                <!-- NO -->
+                                <td class="fw-bold">
+                                    {{ loop.index }}
+                                </td>
+
+                                <!-- CHAR -->
+                                <td>
+
+                                    <span class="badge bg-dark">
+
+                                        {{
+                                            step.get('plaintext_char')
+                                            or
+                                            step.get('ciphertext_char')
+                                            or '-'
+                                        }}
+
+                                    </span>
+
+                                </td>
+
+                                <!-- VALUE -->
+                                 <td>
+
+                                    {% if step.get('plaintext_value') is not none %}
+
+                                        {{ step.get('plaintext_value') }}
+
+                                    {% elif step.get('ciphertext_value') is not none %}
+
+                                        {{ step.get('ciphertext_value') }}
+
+                                    {% else %}
+
+                                        -
+
+                                    {% endif %}
+
+                                </td>
+
+                                <!-- KEY CHAR -->
+                                <td>
+
+                                    {{
+                                        step.get('key_char', '-')
+                                    }}
+
+                                </td>
+
+                                <!-- KEY VALUE -->
+                                <td>
+
+                                    {{
+                                        step.get('key_value', '-')
+                                    }}
+
+                                </td>
+
+                                <!-- CALCULATION -->
+                                <td>
+
+                                    <code>
+
+                                        {{
+                                            step.get('calculation', '-')
+                                        }}
+
+                                    </code>
+
+                                </td>
+
+                                <!-- RESULT -->
+                                <td>
+
+                                    <span class="badge bg-success fs-6 px-3 py-2">
+
+                                        {{
+                                            step.get('result_char', '-')
+                                        }}
+
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                {% else %}
+
+                <!-- EMPTY STATE -->
+                <div class="alert alert-warning text-center">
+
+                    Tidak ada proses perhitungan tersedia.
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+            <!-- BUTTON -->
+            <div class="d-grid mt-4">
+
+                <a
+                    href="/"
+                    class="btn btn-primary btn-lg"
+                >
+                    ← Kembali ke Home
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

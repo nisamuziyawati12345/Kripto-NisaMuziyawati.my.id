@@ -1,0 +1,468 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <div class="col-lg-10">
+
+        <!-- FORM -->
+        <div class="card shadow-lg border-0">
+
+            <div class="card-body p-4">
+
+                <h2 class="text-center mb-4 fw-bold">
+                    🔐 Simulasi Kriptografi Klasik
+                </h2>
+
+                <p class="text-center text-secondary mb-4">
+                    Pelajari proses enkripsi dan dekripsi algoritma kriptografi klasik secara step-by-step.
+                </p>
+
+                <form action="/process" method="POST">
+
+                    <!-- ALGORITHM -->
+                    <div class="mb-4">
+
+                        <label class="form-label fw-bold">
+                            Pilih Algoritma
+                        </label>
+
+                        <select
+                            class="form-select"
+                            name="algorithm"
+                            id="algorithm"
+                        >
+
+                            <option value="caesar">
+                                Caesar Cipher
+                            </option>
+
+                            <option value="vigenere">
+                                Vigenère Cipher
+                            </option>
+
+                            <option value="affine">
+                                Affine Cipher
+                            </option>
+
+                            <option value="hill">
+                                Hill Cipher
+                            </option>
+
+                            <option value="playfair">
+                                Playfair Cipher
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <!-- ACTION -->
+                    <div class="mb-4">
+
+                        <label class="form-label fw-bold">
+                            Pilih Action
+                        </label>
+
+                        <select
+                            class="form-select"
+                            name="action"
+                        >
+
+                            <option value="encrypt">
+                                Encrypt
+                            </option>
+
+                            <option value="decrypt">
+                                Decrypt
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <!-- TEXT -->
+                    <div class="mb-4">
+
+                        <label class="form-label fw-bold">
+                            Input Text
+                        </label>
+
+                        <textarea
+                            class="form-control"
+                            name="text"
+                            rows="5"
+                            placeholder="Masukkan plaintext atau ciphertext..."
+                            required
+                        ></textarea>
+
+                    </div>
+
+                    <!-- ===================================== -->
+                    <!-- CAESAR -->
+                    <!-- ===================================== -->
+
+                    <div
+                        class="mb-4 option-field"
+                        id="caesar-field"
+                    >
+
+                        <label class="form-label fw-bold">
+                            Shift Caesar
+                        </label>
+
+                        <input
+                            type="number"
+                            class="form-control"
+                            name="shift"
+                            min="1"
+                            max="25"
+                            placeholder="1 - 25"
+                        >
+
+                        <small class="text-secondary">
+                            Contoh: 3
+                        </small>
+
+                    </div>
+
+                    <!-- ===================================== -->
+                    <!-- VIGENERE -->
+                    <!-- ===================================== -->
+
+                    <div
+                        class="mb-4 option-field d-none"
+                        id="vigenere-field"
+                    >
+
+                        <label class="form-label fw-bold">
+                            Key Vigenère
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="key"
+                            placeholder="Masukkan keyword..."
+                            autocomplete="off"
+                        >
+
+                        <small class="text-secondary">
+                            Contoh: KEY, SECRET, KRIPTO
+                        </small>
+
+                    </div>
+
+                    <!-- ===================================== -->
+                    <!-- AFFINE -->
+                    <!-- ===================================== -->
+
+                    <div
+                        class="row option-field d-none"
+                        id="affine-field"
+                    >
+
+                        <div class="col-md-6 mb-4">
+
+                            <label class="form-label fw-bold">
+                                Nilai a
+                            </label>
+
+                            <input
+                                type="number"
+                                class="form-control"
+                                name="a"
+                                placeholder="Contoh: 5"
+                            >
+
+                            <small class="text-secondary">
+                                a harus relatif prima dengan 26
+                            </small>
+
+                        </div>
+
+                        <div class="col-md-6 mb-4">
+
+                            <label class="form-label fw-bold">
+                                Nilai b
+                            </label>
+
+                            <input
+                                type="number"
+                                class="form-control"
+                                name="b"
+                                placeholder="Contoh: 8"
+                            >
+
+                        </div>
+
+                    </div>
+
+                    <!-- ===================================== -->
+                    <!-- HILL -->
+                    <!-- ===================================== -->
+
+                    <div
+                        class="mb-4 option-field d-none"
+                        id="hill-field"
+                    >
+
+                        <label class="form-label fw-bold">
+                            Matrix Key Hill
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="hill_key"
+                            placeholder="Contoh: 2 3,1 4"
+                        >
+
+                        <small class="text-secondary">
+                            Format matriks 2x2 atau 3x3
+                        </small>
+
+                    </div>
+
+                    <!-- ===================================== -->
+                    <!-- PLAYFAIR -->
+                    <!-- ===================================== -->
+
+                    <div
+                        class="mb-4 option-field d-none"
+                        id="playfair-field"
+                    >
+
+                        <label class="form-label fw-bold">
+                            Key Playfair
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="playfair_key"
+                            placeholder="Masukkan keyword..."
+                        >
+
+                        <small class="text-secondary">
+                            Contoh: MONARCHY
+                        </small>
+
+                    </div>
+
+                    <!-- BUTTON -->
+                    <div class="d-grid">
+
+                        <button class="btn btn-primary btn-lg">
+
+                            <i class="bi bi-play-fill"></i>
+
+                            Process Kriptografi
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <!-- ===================================== -->
+        <!-- HISTORY -->
+        <!-- ===================================== -->
+
+        <div class="card shadow border-0 mt-4">
+
+            <div class="card-body">
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+
+                    <h4 class="mb-0 fw-bold">
+                        🕘 History
+                    </h4>
+
+                    <span class="badge bg-primary">
+                        {{ history|length }} Data
+                    </span>
+
+                </div>
+
+                {% if history %}
+
+                <div class="table-responsive">
+
+                    <table class="table table-hover align-middle text-center">
+
+                        <thead class="table-primary">
+
+                            <tr>
+
+                                <th>ID</th>
+                                <th>Algorithm</th>
+                                <th>Action</th>
+                                <th>Input</th>
+                                <th>Result</th>
+                                <th>Time</th>
+                                <th>Aksi</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            {% for item in history %}
+
+                            <tr>
+
+                                <td>
+                                    {{ item[0] }}
+                                </td>
+
+                                <td>
+
+                                    <span class="badge bg-info">
+
+                                        {{ item[1] }}
+
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="badge bg-warning text-dark">
+
+                                        {{ item[2] }}
+
+                                    </span>
+
+                                </td>
+
+                                <td>
+                                    {{ item[3] }}
+                                </td>
+
+                                <td class="fw-bold text-success">
+                                    {{ item[4] }}
+                                </td>
+
+                                <td>
+                                    {{ item[5] }}
+                                </td>
+
+                                <td>
+
+                                    <a
+                                        href="/delete/{{ item[0] }}"
+                                        class="btn btn-danger btn-sm"
+                                        onclick="return confirm('Yakin ingin menghapus history ini?')"
+                                    >
+
+                                        <i class="bi bi-trash"></i>
+
+                                        Hapus
+
+                                    </a>
+
+                                </td>
+
+                            </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                {% else %}
+
+                <div class="alert alert-secondary text-center">
+
+                    Belum ada history.
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+const algorithmSelect = document.getElementById("algorithm");
+
+const caesarField = document.getElementById("caesar-field");
+const vigenereField = document.getElementById("vigenere-field");
+const affineField = document.getElementById("affine-field");
+const hillField = document.getElementById("hill-field");
+const playfairField = document.getElementById("playfair-field");
+
+function hideAllFields() {
+
+    caesarField.classList.add("d-none");
+    vigenereField.classList.add("d-none");
+    affineField.classList.add("d-none");
+    hillField.classList.add("d-none");
+    playfairField.classList.add("d-none");
+
+}
+
+function showSelectedField() {
+
+    hideAllFields();
+
+    const algorithm = algorithmSelect.value;
+
+    if (algorithm === "caesar") {
+
+        caesarField.classList.remove("d-none");
+
+    }
+
+    else if (algorithm === "vigenere") {
+
+        vigenereField.classList.remove("d-none");
+
+    }
+
+    else if (algorithm === "affine") {
+
+        affineField.classList.remove("d-none");
+
+    }
+
+    else if (algorithm === "hill") {
+
+        hillField.classList.remove("d-none");
+
+    }
+
+    else if (algorithm === "playfair") {
+
+        playfairField.classList.remove("d-none");
+
+    }
+
+}
+
+algorithmSelect.addEventListener(
+    "change",
+    showSelectedField
+);
+
+showSelectedField();
+
+</script>
+
+{% endblock %}

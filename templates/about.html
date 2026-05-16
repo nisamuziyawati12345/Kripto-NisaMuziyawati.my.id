@@ -1,0 +1,309 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <!-- HERO -->
+    <div class="text-center mb-5">
+
+        <h1 class="display-4 fw-bold mb-3">
+            🔐 About Project
+        </h1>
+
+        <p class="lead text-secondary mx-auto"
+           style="max-width: 800px;">
+
+            Aplikasi Web Simulasi Kriptografi Klasik
+            berbasis Flask untuk membantu memahami
+            proses enkripsi dan dekripsi secara
+            interaktif, transparan, dan edukatif.
+
+        </p>
+
+    </div>
+
+    <!-- FEATURE -->
+    <div class="row g-4 mb-5">
+
+        <div class="col-md-4">
+
+            <div class="card h-100 border-0 shadow-lg feature-card">
+
+                <div class="card-body text-center p-4">
+
+                    <div class="feature-icon mb-3">
+                        🔐
+                    </div>
+
+                    <h4 class="fw-bold">
+                        Enkripsi & Dekripsi
+                    </h4>
+
+                    <p class="text-secondary">
+
+                        Mendukung proses enkripsi dan
+                        dekripsi untuk 5 algoritma
+                        kriptografi klasik.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card h-100 border-0 shadow-lg feature-card">
+
+                <div class="card-body text-center p-4">
+
+                    <div class="feature-icon mb-3">
+                        📘
+                    </div>
+
+                    <h4 class="fw-bold">
+                        Step by Step
+                    </h4>
+
+                    <p class="text-secondary">
+
+                        Menampilkan proses perhitungan
+                        secara detail agar mudah dipahami.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card h-100 border-0 shadow-lg feature-card">
+
+                <div class="card-body text-center p-4">
+
+                    <div class="feature-icon mb-3">
+                        🌙
+                    </div>
+
+                    <h4 class="fw-bold">
+                        Modern UI/UX
+                    </h4>
+
+                    <p class="text-secondary">
+
+                        Responsive design dengan
+                        Dark Mode dan tampilan modern.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ALGORITHM -->
+    <div class="mb-5">
+
+        <h2 class="fw-bold text-center mb-4">
+
+            🧠 Algoritma Kriptografi
+
+        </h2>
+
+        <div class="row g-4">
+
+            <!-- Caesar -->
+            <div class="col-md-6 col-lg-4">
+
+                <div class="card algorithm-card h-100 border-0 shadow">
+
+                    <div class="card-body">
+
+                        <h4 class="fw-bold text-primary">
+                            Caesar Cipher
+                        </h4>
+
+                        <p class="text-secondary">
+
+                            Teknik substitusi sederhana
+                            dengan menggeser huruf
+                            berdasarkan key tertentu.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Vigenere -->
+            <div class="col-md-6 col-lg-4">
+
+                <div class="card algorithm-card h-100 border-0 shadow">
+
+                    <div class="card-body">
+
+                        <h4 class="fw-bold text-success">
+                            Vigenère Cipher
+                        </h4>
+
+                        <p class="text-secondary">
+
+                            Menggunakan kata kunci
+                            untuk menghasilkan pola
+                            enkripsi yang lebih kompleks.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Affine -->
+            <div class="col-md-6 col-lg-4">
+
+                <div class="card algorithm-card h-100 border-0 shadow">
+
+                    <div class="card-body">
+
+                        <h4 class="fw-bold text-danger">
+                            Affine Cipher
+                        </h4>
+
+                        <p class="text-secondary">
+
+                            Kombinasi operasi perkalian
+                            dan penjumlahan modulo 26.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Hill -->
+            <div class="col-md-6 col-lg-6">
+
+                <div class="card algorithm-card h-100 border-0 shadow">
+
+                    <div class="card-body">
+
+                        <h4 class="fw-bold text-warning">
+                            Hill Cipher
+                        </h4>
+
+                        <p class="text-secondary">
+
+                            Menggunakan matriks dan
+                            perkalian linear algebra
+                            untuk proses enkripsi.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Playfair -->
+            <div class="col-md-6 col-lg-6">
+
+                <div class="card algorithm-card h-100 border-0 shadow">
+
+                    <div class="card-body">
+
+                        <h4 class="fw-bold text-info">
+                            Playfair Cipher
+                        </h4>
+
+                        <p class="text-secondary">
+
+                            Teknik enkripsi pasangan huruf
+                            menggunakan tabel matriks 5x5.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- TECH STACK -->
+    <div class="card border-0 shadow-lg mb-5">
+
+        <div class="card-body p-4">
+
+            <h2 class="fw-bold mb-4 text-center">
+                ⚙️ Tech Stack
+            </h2>
+
+            <div class="row text-center g-4">
+
+                <div class="col-md-3">
+                    <h5>🐍 Python</h5>
+                </div>
+
+                <div class="col-md-3">
+                    <h5>🌐 Flask</h5>
+                </div>
+
+                <div class="col-md-3">
+                    <h5>🎨 Bootstrap 5</h5>
+                </div>
+
+                <div class="col-md-3">
+                    <h5>⚡ JavaScript</h5>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- EDUCATION -->
+    <div class="card border-0 shadow-lg">
+
+        <div class="card-body p-5 text-center">
+
+            <h2 class="fw-bold mb-3">
+                🎓 Tujuan Edukasi
+            </h2>
+
+            <p class="text-secondary fs-5">
+
+                Project ini dibuat untuk membantu mahasiswa
+                memahami konsep dasar kriptografi klasik,
+                proses matematis enkripsi-dekripsi,
+                serta implementasi algoritma menggunakan
+                Python dan Flask.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
